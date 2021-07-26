@@ -1,4 +1,4 @@
-# Putty Controller
+# Con Controller
 
 > Use this app to control Putty, Winscp and WFreeRDP <http://www.freerdp.com> sessions.
 
