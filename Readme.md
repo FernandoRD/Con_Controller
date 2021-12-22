@@ -48,5 +48,5 @@ With this done, we´re good to go :-)
 Feel free to download, use and modify it:
 
 ```shell
-git clone https://github.com/FernandoRD/putty_controller.git
+git clone https://github.com/FernandoRD/Con_controller.git
 ```
