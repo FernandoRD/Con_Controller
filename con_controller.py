@@ -3,6 +3,8 @@ from tkinter import Label, Listbox, Message, IntVar, Checkbutton, Scrollbar, Top
 from tkinter.constants import BOTH, DISABLED, GROOVE, LEFT, RIGHT, W, SUNKEN, END, Y
 import functions
 
+# Teste
+
 # Instancia a Janela
 root = tkinter.Tk()
 # Titulo da janela
