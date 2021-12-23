@@ -7,6 +7,7 @@ import subprocess
 home_drive = os.getenv('HOMEDRIVE')
 home_path = os.getenv('HOMEPATH')
 
+
 # Type define o tipo de uso 0 ou diferente de zero
 def load_file(location, index, type):
     data_out = dict()
