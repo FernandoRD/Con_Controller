@@ -8,11 +8,11 @@ import functions
 # Instancia a Janela
 root = tkinter.Tk()
 # Titulo da janela
-root.title("Putty Controller")
+root.title("Con Controller")
 
 # Arquivos utilizados
-servers_file="/Putty_Controller/servers.txt"
-accounts_file="/Putty_Controller/accounts.txt"
+servers_file="/path_to_file/servers.txt"
+accounts_file="/path_to_file/accounts.txt"
 
 # Editor de texto
 def open_editor(config_file, file):
