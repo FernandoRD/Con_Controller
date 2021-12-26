@@ -1,21 +1,22 @@
 # Con Controller
 
-> Use this app to control Putty, Winscp and WFreeRDP <http://www.freerdp.com> sessions.
-
 This is a python 3 script, with a graphical user interface all written with tkinter.
 
 Tested/created with python 3.9.
 
-## Running the app
+## Preparing to run
 
-Download the files putty_controller.py and functions.py anywhere, then run:
+Download the files con_controller.py and functions.py.
 
-```shell
-pythonw putty_controller.py
-```
-You may create a shortcut if you like.
+Create a folder named Con_controller inside your home directory.
 
-Before running you need to fill the two text files, servers.txt and accounts.txt in the following way:
+You may create a shortcut at desktop if you like.
+
+Inside the folder Con_controller you need 2 .txt files.
+
+servers.txt and accounts.txt
+
+They must follow the following parameters: (example)
 
 ```shell
 servers.txt
@@ -29,19 +30,27 @@ account2_name,user,password,
 account3_name,user,password,
 ```
 
-Those files should be placed at your Documents folder.
+The first 6 lines of accounts.txt will appear as check boxes at the gui for quick selection, you may change this editing the code.
 
-Download putty at <https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html>
+### Con controller was written to control 3 different aplications:
 
-Download winscp at <https://winscp.net/eng/downloads.php#additional>
+>Download putty at <https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html>
 
-Download WfreeRDP for windows at <https://cloudbase.it/freerdp-for-windows-nightly-builds/>
+>Download winscp at <https://winscp.net/eng/downloads.php#additional>
 
-All should be downloaded/unzipped at your home directory.
+>Download WfreeRDP for windows at <https://cloudbase.it/freerdp-for-windows-nightly-builds/>
 
-Those locations can be changed in the code, in fact winscp version is hardcoded, please change it accordingly.
+All should be downloaded/unzipped at Con_controller directory.
 
 With this done, we´re good to go :-)
+
+## Running the app
+
+You may type on shell:
+
+```shell
+pythonw con_controller.py
+```
 
 ## Developing
 
