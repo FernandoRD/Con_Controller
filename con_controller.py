@@ -11,8 +11,8 @@ root = tkinter.Tk()
 root.title("Con Controller")
 
 # Arquivos utilizados
-servers_file="/path_to_file/servers.txt"
-accounts_file="/path_to_file/accounts.txt"
+servers_file="/Con_controller/servers.txt"
+accounts_file="/Con_controller/accounts.txt"
 
 # Editor de texto
 def open_editor(config_file, file):
