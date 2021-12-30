@@ -11,8 +11,8 @@ root = tkinter.Tk()
 root.title("Con Controller")
 
 # Arquivos utilizados
-servers_file="/Con_controller/servers.txt"
-accounts_file="/Con_controller/accounts.txt"
+servers_file="/Putty_Controller/servers.txt"
+accounts_file="/Putty_Controller/accounts.txt"
 
 # Editor de texto
 def open_editor(config_file, file):
@@ -60,10 +60,10 @@ def destroy_frame(frame):
         widget.destroy()
         
 # Define e limpa o frame esquerdo
-w_server = tkinter.Frame(root, width=300, height=310, borderwidth=1, relief=GROOVE)
+w_server = tkinter.Frame(root, width=300, height=315, borderwidth=1, relief=GROOVE)
 destroy_frame(w_server)
 # Define e limpa o frame direito
-w_buttoms = tkinter.Frame(root, width=120, height=310, borderwidth=1, relief=GROOVE)
+w_buttoms = tkinter.Frame(root, width=120, height=315, borderwidth=1, relief=GROOVE)
 destroy_frame(w_buttoms)
 
 # Carrega o arquivo de servidores
@@ -106,18 +106,18 @@ show_server.place(x=80, y=0, width=215, height=30)
 title_server_standalone = tkinter.Message(w_server, text="Connect to: ", width=100)
 title_server_standalone.place(x=1, y=163)
 server_standalone = tkinter.Entry(w_server)
-server_standalone.place(x=80, y=165, width=215)
+server_standalone.place(x=80, y=160, width=215)
 
 # Instancia as Entries de usuário e senha OTHER com estado inicial DISABLED
 title_user_standalone = tkinter.Message(w_server, text="User: ", width=100)
-title_user_standalone.place(x=1, y=245)
+title_user_standalone.place(x=1, y=270)
 user_standalone = tkinter.Entry(w_server, state=DISABLED)
-user_standalone.place(x=80, y=247, width=215)
+user_standalone.place(x=80, y=272, width=215)
 
 title_password_standalone = tkinter.Message(w_server, text="Password: ", width=100)
-title_password_standalone.place(x=1, y=270)
+title_password_standalone.place(x=1, y=290)
 password_standalone = tkinter.Entry(w_server, state=DISABLED)
-password_standalone.place(x=80, y=272, width=215)
+password_standalone.place(x=80, y=292, width=215)
 
 # Função que limpa as Entries definidas pelo usuário
 def clear_server_standalone(e):
@@ -141,6 +141,7 @@ def enable_fields():
 
 # Carrega o arquivo de accounts
 accounts = functions.load_file(accounts_file,0,1)
+
 # Instancia as keys para cada tipo de acconut usado
 accounts_key0 = tkinter.IntVar()
 accounts_key1 = tkinter.IntVar()
@@ -154,30 +155,30 @@ title_accounts = tkinter.Message(w_server, text="Use account: ", width=100)
 title_accounts.place(x=1, y=200)
 
 # Associa o estado dos check buttoms ao valor das keys
-account_check = Checkbutton(w_server, text="LTM",variable=accounts_key0)
-account_check.place(x=75, y=200)
-account_check = Checkbutton(w_server, text="DUS",variable=accounts_key1)
-account_check.place(x=125, y=200)
-account_check = Checkbutton(w_server, text="BRGER",variable=accounts_key2)
-account_check.place(x=175, y=200)
-account_check = Checkbutton(w_server, text="ADMU",variable=accounts_key3)
-account_check.place(x=75, y=220)
-account_check = Checkbutton(w_server, text="CONTROL",variable=accounts_key4)
-account_check.place(x=135, y=220)
+account_check1 = Checkbutton(w_server, text=list(accounts.keys())[0],variable=accounts_key0)
+account_check1.place(x=75, y=185)
+account_check2 = Checkbutton(w_server, text=list(accounts.keys())[1],variable=accounts_key1)
+account_check2.place(x=75, y=205)
+account_check3 = Checkbutton(w_server, text=list(accounts.keys())[2],variable=accounts_key2)
+account_check3.place(x=75, y=225)
+account_check4 = Checkbutton(w_server, text=list(accounts.keys())[3],variable=accounts_key3)
+account_check4.place(x=175, y=185)
+account_check5 = Checkbutton(w_server, text=list(accounts.keys())[4],variable=accounts_key4)
+account_check5.place(x=175, y=205)
 
 # Habilita/desabilita os campos de usuário e senha ao se selecionar/deselecionar OTHER
 account_check = Checkbutton(w_server, text="OTHER",variable=accounts_other, command=enable_fields)
-account_check.place(x=235, y=200)
+account_check.place(x=75, y=245)
 
 # Função que chama a função que abre o putty
 def do_open_putty(accounts_key0, accounts_key1, accounts_key2, accounts_key3, accounts_key4, accounts_other, accounts):
-    global servers, server_key, servers_list
+    global servers, server_key, servers_list    
     # Usar o usuario/senha dos campos
     if server_standalone.get() != "":
         # Itera a lista e para cada posição
-        for account in functions.create_accounts_used(accounts_key0, accounts_key1, accounts_key2, accounts_key3, accounts_key4, accounts_other, server_standalone, user_standalone):
+        for account in functions.create_accounts_used(accounts_key0, accounts_key1, accounts_key2, accounts_key3, accounts_key4, accounts_other, server_standalone, user_standalone, accounts):
             # Executa para os accounts pre definidos
-            if account == "LTM" or account == "DUS" or account == "BRGER" or account == "ADMU" or account == "CONTROL":
+            if account == list(accounts.keys())[0] or account == list(accounts.keys())[1] or account == list(accounts.keys())[2] or account == list(accounts.keys())[3] or account == list(accounts.keys())[4]:
                 user = str(accounts.get(str(account))).split(",")[1]
                 password = str(accounts.get(str(account))).split(",")[2]
                 functions.open_putty(user, password, server_standalone.get())
@@ -221,7 +222,7 @@ def do_open_winscp(accounts_key0, accounts_key1, accounts_key2, accounts_key3, a
     global servers, server_key, servers_list
     if server_standalone.get() != "":
         for account in functions.create_accounts_used(accounts_key0, accounts_key1, accounts_key2, accounts_key3, accounts_key4, accounts_other, server_standalone, user_standalone):
-            if account == "LTM" or account == "DUS" or account == "BRGER" or account == "ADMU" or account == "CONTROL":
+            if account == list(accounts.keys())[0] or account == list(accounts.keys())[1] or account == list(accounts.keys())[2] or account == list(accounts.keys())[3] or account == list(accounts.keys())[4]:
                 user = str(accounts.get(str(account))).split(",")[1]
                 password = str(accounts.get(str(account))).split(",")[2]                    
                 functions.open_winscp(user, password, server_standalone.get(), sudo_value.get())
@@ -256,7 +257,7 @@ def do_open_wfreerdp(accounts_key0, accounts_key1, accounts_key2, accounts_key3,
         width = 1440
         height = 900
         for account in functions.create_accounts_used(accounts_key0, accounts_key1, accounts_key2, accounts_key3, accounts_key4, accounts_other, server_standalone, user_standalone):
-            if account == "LTM" or account == "DUS" or account == "BRGER" or account == "ADMU" or account == "CONTROL":
+            if account == list(accounts.keys())[0] or account == list(accounts.keys())[1] or account == list(accounts.keys())[2] or account == list(accounts.keys())[3] or account == list(accounts.keys())[4]:
                 user_tmp = str(accounts.get(str(account))).split(",")[1]
                 user_name = str(user_tmp).split("@")[0]
                 user_domain = str(user_tmp).split("@")[1]
@@ -344,6 +345,16 @@ def reload_servers():
 def reload_accounts():
     global accounts
     accounts = functions.load_file(accounts_file,0,1)
+    account_check1 = Checkbutton(w_server, text=list(accounts.keys())[0],variable=accounts_key0)
+    account_check1.place(x=75, y=185)
+    account_check2 = Checkbutton(w_server, text=list(accounts.keys())[1],variable=accounts_key1)
+    account_check2.place(x=75, y=205)
+    account_check3 = Checkbutton(w_server, text=list(accounts.keys())[2],variable=accounts_key2)
+    account_check3.place(x=75, y=225)
+    account_check4 = Checkbutton(w_server, text=list(accounts.keys())[3],variable=accounts_key3)
+    account_check4.place(x=175, y=185)
+    account_check5 = Checkbutton(w_server, text=list(accounts.keys())[4],variable=accounts_key4)
+    account_check5.place(x=175, y=205)
 
 def item_menu_accounts():
     onOpen(accounts_file)

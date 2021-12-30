@@ -7,7 +7,6 @@ import subprocess
 home_drive = os.getenv('HOMEDRIVE')
 home_path = os.getenv('HOMEPATH')
 
-
 # Type define o tipo de uso 0 ou diferente de zero
 def load_file(location, index, type):
     data_out = dict()
@@ -72,34 +71,34 @@ def reload_files(servers_file, accounts_file):
     return_list.append(accounts)
     return return_list
 
-def create_accounts_used(accounts_key0, accounts_key1, accounts_key2, accounts_key3, accounts_key4, accounts_other, server_standalone, user_standalone):
+def create_accounts_used(accounts_key0, accounts_key1, accounts_key2, accounts_key3, accounts_key4, accounts_other, server_standalone, user_standalone, accounts):
     # Usar o usuario/senha dos campos
     if server_standalone.get() != "":
         # Cria a lista de accounts dos check buttoms
         accounts_used = list()
         #Verifica quais ckeck buttoms estão selecionados e substitui o valor do check buttom pelo nome da key
         if accounts_key0.get() != 0:
-            accounts_key0 = "LTM"
+            accounts_key0 = str(list(accounts.keys())[0])
         else:
             accounts_key0 =""
 
         if accounts_key1.get() != 0:
-            accounts_key1 = "DUS"
+            accounts_key1 = str(list(accounts.keys())[1])
         else:
             accounts_key1 = "" 
 
         if accounts_key2.get() != 0:
-            accounts_key2 = "BRGER"
+            accounts_key2 = str(list(accounts.keys())[2])
         else:
             accounts_key2 = ""
 
         if accounts_key3.get() != 0:
-            accounts_key3 = "ADMU"
+            accounts_key3 = str(list(accounts.keys())[3])
         else:
             accounts_key3 = ""
 
         if accounts_key4.get() != 0:
-            accounts_key4 = "CONTROL"
+            accounts_key4 = str(list(accounts.keys())[4])
         else:
             accounts_key4 = ""
         # Para o OTHER atribui o valor passado pelo usuario
